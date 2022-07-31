@@ -5,6 +5,7 @@ import AddMovie from './components/AddMovie';
 import './App.css';
 
 function App() {
+
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -19,7 +20,7 @@ function App() {
       }
 
       const data = await response.json();
-
+      console.log(data);
       const loadedMovies = [];
 
       for (const key in data) {
@@ -27,12 +28,12 @@ function App() {
           id: key,
           title: data[key].title,
           openingText: data[key].openingText,
-          releaseDate: data[key].releaseDate,
+          releaseDate: data[key].releaseDate
         });
       }
-
-
+      console.log(loadedMovies);
       setMovies(loadedMovies);
+
     } catch (error) {
       setError(error.message);
     }
@@ -72,6 +73,7 @@ function App() {
   if (movies.length > 0) { content = <MoviesList movies={movies} />; }
   if (error) { content = <p>{error}</p>; }
   if (isLoading) { content = <p>Loading...</p>; }
+  //
 
   return (
     <React.Fragment>
