@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-
 import MoviesList from './components/MoviesList';
 import AddMovie from './components/AddMovie';
 import './App.css';
@@ -14,7 +13,9 @@ function App() {
     setIsLoading(true);
     setError(null);
     try {
+
       const response = await fetch('https://react-http-38b54-default-rtdb.firebaseio.com/movies.json');
+      console.log(response);
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }
